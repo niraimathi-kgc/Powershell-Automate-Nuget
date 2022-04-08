@@ -1,6 +1,6 @@
 ﻿# Assigning the path to the Variables for easy access...
 
-#$PackagePath = "C:\Users\niraimathi.kgc\.nuget\packages"
+$PackagePath = "C:\Users\niraimathi.kgc\.nuget\packages"
 
 # $DBServicesPath - Should give the package directory in users\niraimathi.kgc\.nuget\packages
 $DBServicesPath = "D:\repo old\AutomatePractice\Services.DB\DB.Services"
@@ -14,9 +14,9 @@ $CheckEntityPath = Test-Path -Path $EntityPackPath
 
 # Checking and deleting the old packages in the prefered path
 
-function Clear-BatFile 
+function Delete-BatFile 
 {
-Set-Location $DBAccessPath
+cd $DBAccessPath
 if ($CheckEntityPath)
     {
 # To remove the existing package
@@ -34,7 +34,7 @@ else
         Write-Host "`nthe Entity framework Package has been successfully Installed`n"
         Write-Host "-------------------------------------`n`n`n"
     }
-    Set-Location $DBServicesPath
+    cd $DBServicesPath
 if ($CheckNewtonPath)
     {
 # To remove the existing package
@@ -55,7 +55,7 @@ else
 
 
 # Calling the function to check the path for deletion and to install the specified version of the package
-Clear-BatFile
+Delete-BatFile
 
 # To re-check the existance of the package after deletion
 #Write-Host "existance of newtonsoft nuget package: "

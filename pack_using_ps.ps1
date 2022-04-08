@@ -1,23 +1,29 @@
 ﻿# Declaring variable for assigning path
 $DAPath = "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB" # used in cd command for Data.Access
 $DSPath = "D:\repo old\AutomatePractice\Services.DB\DB.Services\" # used in cd command for Data.Services
-$DAPackagePath = "C:\Users\niraimathi.kgc\.nuget\packages\DataAccess.nuget" # used in nuget pack command in Data.Access
-$DSBuildPath = "D:\repo old\AutomatePractice\Services.DB\DB.Services\bin\release\net5.0" # used in build command in Data.Service
-$DABuildPath = "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB\bin\release\net5.0" # used in build command in Data.Access
-#$BinPath = "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB\nupkgs"
-$DSPackagePath = "C:\Users\niraimathi.kgc\.nuget\packages\DataService.nuget" # used in nuget pack command in Data.Service
-
+$PathNuget = "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB\DataAccess.DB.1.0.0.nupkg"
+$PathForNuget = "D:\repo old\AutomatePractice\Services.DB\DB.Services\DB.Services.1.0.0.nupkg"
+$Path1 = "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB"
+$Path2 = "D:\repo old\AutomatePractice\Services.DB\DB.Services"
 
 # Configure and pack in Data.Access Project
 Set-Location $DAPath
-nuget spec DataAccess.DB.csproj
 dotnet clean
-dotnet build -o $DABuildPath -c Configuration=release
-nuget pack "DataAccess.DB.csproj" -Properties Configuration=release -OutputDirectory $DAPackagePath
-
+dotnet build 
+nuget pack 
+nuget add "D:\repo old\AutomatePractice\DataAccess\DataAccess.DB\DataAccess.DB.1.0.0.nupkg" -Source "C:\Program Files (x86)\Microsoft SDKs\NuGetPackages"
 # Configure and pack in Data.Service Project
-Set-Location $DSPath
-nuget spec DB.Services.csproj
+#
+
+
+Set-Location "D:\repo old\AutomatePractice\Services.DB\DB.Services\"
+
 dotnet clean
-dotnet build -o $DSBuildPath
-nuget pack "DB.Services.csproj" -Properties Configuration=release -OutputDirectory $DSPackagePath
+dotnet build 
+nuget pack
+
+nuget add "D:\repo old\AutomatePractice\Services.DB\DB.Services\DB.Services.1.0.0.nupkg" -Source "C:\Program Files (x86)\Microsoft SDKs\NuGetPackages"
+
+
+#Set-Location "D:\repo old\AutomatePractice\Services.DB\DB.Services"
+dotnet add package dataaccess.db
